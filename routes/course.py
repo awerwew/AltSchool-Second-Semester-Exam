@@ -28,7 +28,7 @@ def create_course(course_data: CourseCreate):
     course = course_service.create_course(course_data)
     return Response(message="Course was created successfully", data=course)
 
-@course_router.put("/updates/{course_id}")
+@course_router.put("/{course_id}")
 def course_update(course_id: UUID, course_data:CourseUpdate):
     course = course_service.course_update(course_id, course_data)
     if not course:
@@ -36,7 +36,7 @@ def course_update(course_id: UUID, course_data:CourseUpdate):
     return Response(message="Course updated successful", data=course)
 
 
-@course_router.delete("/deletes/{course_id}")
+@course_router.delete("/{course_id}")
 def delete_course(course_id: UUID):
     is_deleted= course_service.delete_course(course_id)
     if not is_deleted:
