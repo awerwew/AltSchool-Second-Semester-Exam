@@ -9,7 +9,7 @@ from uuid import UUID
 course_router = APIRouter()
 
 
-@course_router.get("/all")
+@course_router.get("/")
 def get_all_courses():
     courses = course_service.get_all_courses()
     return Response(message="Success", data= courses)

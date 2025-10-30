@@ -7,7 +7,7 @@ from services.user_service import user_service
 user_router = APIRouter()
 
 
-@user_router.get("/all", status_code=200, response_model=Response, summary="Get all users")
+@user_router.get("/", status_code=200, response_model=Response, summary="Get all users")
 def get_all_users():
     users = user_service.get_all_users()
     return Response(message="Success", data=users)
