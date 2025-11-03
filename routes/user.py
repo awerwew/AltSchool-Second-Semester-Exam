@@ -13,7 +13,7 @@ def get_all_users():
     return Response(message="Success", data=users)
 
 
-@user_router.get("/details/{user_id}", status_code=200, response_model=Response, summary="Get a user by ID")
+@user_router.get("/{user_id}/details", status_code=200, response_model=Response, summary="Get a user by ID")
 def get_user_by_id(user_id: UUID):
     user = user_service.get_user_by_id(user_id)
     if not user:
@@ -21,13 +21,13 @@ def get_user_by_id(user_id: UUID):
     return Response(message="Success", data=user)
 
 
-@user_router.post("/create", status_code=201, response_model=Response, summary="Create a new user, a 422 http response is returned if email already exists.")
+@user_router.post("/", status_code=201, response_model=Response, summary="Create a new user, a 422 http response is returned if email already exists.")
 def create_user(user_data: UserCreate):
     user = user_service.create_user(user_data)
     return Response(message="User was created successfully", data=user)
 
 
-@user_router.put("/update/{user_id}", status_code=200, response_model=Response, summary="Update a user")
+@user_router.put("/{user_id}", status_code=200, response_model=Response, summary="Update a user")
 def update_user(user_id: UUID, user_data: UserUpdate):
     user = user_service.update_user(user_id, user_data)
     if not user:

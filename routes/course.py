@@ -23,7 +23,7 @@ def get_course_by_id(course_id: UUID):
     return Response(message="Successful", data= course)
 
 
-@course_router.post("/create", summary="This endpoint creates course")
+@course_router.post("/", summary="This endpoint creates course")
 def create_course(course_data: CourseCreate):
     course = course_service.create_course(course_data)
     return Response(message="Course was created successfully", data=course)
@@ -44,7 +44,7 @@ def delete_course(course_id: UUID):
     return Response(message="Course deleted successfully", data=None)
 
 
-@course_router.patch("/close-enrollment/{course_id}", summary="This endpoint is used to close course enrollment")
+@course_router.patch("/{course_id}/close-enrollment", summary="This endpoint is used to close course enrollment")
 def close_enrollment(course_id: UUID):
     closed_enrollment = course_service.close_enrollment(course_id)
     if not closed_enrollment:
@@ -52,7 +52,7 @@ def close_enrollment(course_id: UUID):
     return Response(message="Enrollment closed successfully", data= None)
 
 
-@course_router.patch("/reopen-enrollment/{course_id}", summary="This endpoint is used to reopen course enrollment")
+@course_router.patch("/{course_id}/reopen-enrollment", summary="This endpoint is used to reopen course enrollment")
 def reopen_enrollment(course_id: UUID):
     opened_enrollment = course_service.reopen_enrollment(course_id)
     if not opened_enrollment:
@@ -61,7 +61,7 @@ def reopen_enrollment(course_id: UUID):
 
 
 
-@course_router.get("/courses/{course_id}/enrolled-users", summary="To retrieve users in a paticular course")
+@course_router.get("/{course_id}/enrolled-users", summary="To retrieve users in a paticular course")
 def retrieve_enrolled_users(course_id:UUID):
     popular_course = course_service.retrieve_enrolled_users(course_id)
     return {"Message": "Popular course retrieved successfully", "data":popular_course}     

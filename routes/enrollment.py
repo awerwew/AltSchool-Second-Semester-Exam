@@ -20,7 +20,7 @@ def enroll_user_in_course(enroll_data: EnrollmentCreate):
 
 
 post_summary ="Marks the completion of a course enrolled by a user"
-@enrollment_router.patch("/mark-completion/{enrollment_id}", status_code=201,summary=post_summary, response_model=Response)
+@enrollment_router.patch("/{enrollment_id}/mark-completion", status_code=201,summary=post_summary, response_model=Response)
 def mark_course_completion(enrollment_id: UUID):
     try:
         completion_marked = enrollment_service.mark_course_completion(enrollment_id)
@@ -32,7 +32,7 @@ def mark_course_completion(enrollment_id: UUID):
     
     
 
-@enrollment_router.get("/user-enrollments/{user_id}", response_model=Response, status_code=200)
+@enrollment_router.get("/{user_id}/user-enrollments", response_model=Response, status_code=200)
 def all_enrollments_of_user(user_id: UUID):
     user_enrollments = enrollment_service.all_enrollments_of_user(user_id)
 
