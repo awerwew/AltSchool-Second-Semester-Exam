@@ -13,6 +13,6 @@ app.include_router(enrollment_router, prefix="/course-enrollments", tags=["Cours
 app.include_router(user_router, prefix="/users", tags=["Users"])
 
 
-@app.get("/", status_code= 200)
+@app.get("/", tags=["Home"], status_code= 200)
 def home():
     return {"Message": "Welcome to EduTrack Lite API"}
