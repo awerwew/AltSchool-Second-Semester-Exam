@@ -13,7 +13,7 @@ def get_all_users():
     return Response(message="Success", data=users)
 
 
-@user_router.get("/{user_id}/details", status_code=200, response_model=Response, summary="Get a user by ID")
+@user_router.get("/{user_id}", status_code=200, response_model=Response, summary="Get a user by ID")
 def get_user_by_id(user_id: UUID):
     user = user_service.get_user_by_id(user_id)
     if not user:
