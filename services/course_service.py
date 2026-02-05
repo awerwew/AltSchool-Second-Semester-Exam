@@ -25,8 +25,8 @@ class CourseService:
     #This returns all create new course.
     def create_course(course_data: CourseCreate):
         for course in courses.values():
-            if course.description == course_data.description:
-                raise HTTPException(status_code=422, detail="A user with this email already exists.")
+            if course.title == course_data.title:
+                raise HTTPException(status_code=422, detail="A course with this title already exists.")
 
         new_course = Course(id=str(uuid4()), **course_data.model_dump())
         courses[new_course.id] = new_course
