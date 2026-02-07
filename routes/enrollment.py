@@ -32,7 +32,7 @@ def mark_course_completion(enrollment_id: UUID):
     
     
 
-@enrollment_router.get("/{user_id}/user-enrollments", response_model=Response, status_code=200)
+@enrollment_router.get("/{user_id}", response_model=Response, status_code=200)
 def all_enrollments_of_user(user_id: UUID):
     user_enrollments = enrollment_service.all_enrollments_of_user(user_id)
 
