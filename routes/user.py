@@ -27,7 +27,7 @@ def create_user(user_data: UserCreate):
     return Response(message="User was created successfully", data=user)
 
 
-@user_router.put("/{user_id}", status_code=200, response_model=Response, summary="Update a user")
+@user_router.patch("/{user_id}", status_code=200, response_model=Response, summary="Update a user")
 def update_user(user_id: UUID, user_data: UserUpdate):
     user = user_service.update_user(user_id, user_data)
     if not user:
@@ -38,7 +38,7 @@ def update_user(user_id: UUID, user_data: UserUpdate):
     return Response(message="User was updated successfully", data=user)
 
 
-@user_router.patch("/{user_id}", status_code=200, summary="Deactivate a user")
+@user_router.patch("/{user_id}/deactivate", status_code=200, summary="Deactivate a user")
 def deactivate_user(user_id: UUID):
     user_is_deactivated = user_service.deactivate_user(user_id)
     if not user_is_deactivated:
@@ -60,7 +60,7 @@ def delete_user(user_id: UUID):
     return Response(message="User deleted successfully", data=None)
 
 
-@user_router.patch("/{user_id}", status_code=200, summary="To reactivate a user", response_model= Response)
+@user_router.patch("/{user_id}/reactivate", status_code=200, summary="To reactivate a user", response_model= Response)
 def reactivate_user(user_id: UUID):
     user_is_reactivated = user_service.reactivate_user(user_id)
     if not user_is_reactivated:
